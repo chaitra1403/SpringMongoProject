@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.*;
 public class StudentController {
 
     @Autowired
-    private StudentServices studentServices;
+    public StudentServices studentServices;
 
     @PostMapping(value = "/save")
-    private String saveStudent(@RequestBody Student students) {
+    public String saveStudent(@RequestBody Student students) {
 
         studentServices.saveorUpdate(students);
         return students.get_id();
@@ -26,7 +26,7 @@ public class StudentController {
     }
 
     @PutMapping(value = "/edit/{id}")
-    private Student update(@RequestBody Student student, @PathVariable(name = "id") String _id) {
+    public Student update(@RequestBody Student student, @PathVariable(name = "id") String _id) {
         student.set_id(_id);
         studentServices.saveorUpdate(student);
         return student;
@@ -34,13 +34,13 @@ public class StudentController {
 
 
     @DeleteMapping("/delete/{id}")
-    private void deleteStudent(@PathVariable("id") String _id) {
+    public void deleteStudent(@PathVariable("id") String _id) {
         studentServices.deleteStudent(_id);
     }
 
 
     @RequestMapping("/search/{id}")
-    private Student getStudents(@PathVariable(name = "id") String studentid) {
+    public Student getStudents(@PathVariable(name = "id") String studentid) {
         return studentServices.getStudentByID(studentid);
     }
 
